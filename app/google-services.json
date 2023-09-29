@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "906674028856",
+    "firebase_url": "https://alpe-2766e-default-rtdb.firebaseio.com",
+    "project_id": "alpe-2766e",
+    "storage_bucket": "alpe-2766e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906674028856:android:35eb0227e420266edc41cd",
+        "android_client_info": {
+          "package_name": "com.example.alpe"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBx1BuzICBFF1YZX10WFI06BLHODQih9aM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

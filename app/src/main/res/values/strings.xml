@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">ALPE</string>
+    <string name="channel_description">canal para enviar notificaciones</string>
+    <string-array name="opciones_menu">
+        <item>Opción 1</item>
+        <item>Opción 2</item>
+        <item>Opción 3</item>
+    </string-array>
+
+</resources>
