@@ -88,7 +88,8 @@ public class menuPrincipal extends Activity {
                         startActivity(intent);
                         return true;
                     case R.id.opcion2:
-                        // Realiza una acción cuando se selecciona Opción 2
+                        Intent intent2 = new Intent(menuPrincipal.this, TuPez.class);
+                        startActivity(intent2);
                         return true;
                     // Agrega más casos según sea necesario para otras opciones
                     default:

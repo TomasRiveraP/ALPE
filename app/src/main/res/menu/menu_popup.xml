@@ -5,6 +5,6 @@
         android:title="Registros" />
     <item
         android:id="@+id/opcion2"
-        android:title="Redes sociales" />
+        android:title="Mis peces" />
     <!-- Agrega más elementos de menú según sea necesario -->
 </menu>

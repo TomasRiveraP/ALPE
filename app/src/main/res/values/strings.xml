@@ -1,10 +1,19 @@
 <resources>
     <string name="app_name">ALPE</string>
     <string name="channel_description">canal para enviar notificaciones</string>
-    <string-array name="opciones_menu">
-        <item>Opción 1</item>
-        <item>Opción 2</item>
-        <item>Opción 3</item>
+    <string name="tipos_de_peces" />
+
+    <string-array name="tipos_de_peces">
+        <item>Pez 1</item>
+        <item>Pez 2</item>
+        <item>Pez 3</item>
+        <!-- Agrega más tipos de pez según sea necesario -->
+    </string-array>
+    <string-array name="informacion_de_peces">
+        <item>Información del Pez 1</item>
+        <item>Información del Pez 2</item>
+        <item>Información del Pez 3</item>
+        <!-- Agrega más información de peces correspondiente a los tipos de pez -->
     </string-array>
 
 </resources>

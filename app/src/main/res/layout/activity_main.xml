@@ -12,7 +12,6 @@
         android:layout_height="730dp"
         android:layout_gravity="center"
         android:src="@drawable/logotipo"
-
         />
 
     <Button
