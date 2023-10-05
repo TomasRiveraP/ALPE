@@ -2,9 +2,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/opcion1"
-        android:title="Registros" />
+        android:title="Registros"
+        android:textSize="18sp"/>
     <item
         android:id="@+id/opcion2"
-        android:title="Mis peces" />
-    <!-- Agrega más elementos de menú según sea necesario -->
+        android:title="Añade un pez"
+        android:textSize="18sp"/>
+    <item
+        android:id="@+id/opcion3"
+        android:title="Mis peces"
+        android:textSize="18sp" />
+
 </menu>

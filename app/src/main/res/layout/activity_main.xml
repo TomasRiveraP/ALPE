@@ -8,19 +8,19 @@
     android:background="@drawable/degradado">
 
     <ImageView
-        android:layout_width="410dp"
+        android:layout_width="396dp"
         android:layout_height="730dp"
         android:layout_gravity="center"
-        android:src="@drawable/logotipo"
-        />
+        android:src="@drawable/logotipo" />
 
     <Button
         android:id="@+id/btnIrAMenuPrincipal"
-        android:layout_width="410dp"
-        android:layout_height="wrap_content"
+        style="@style/BotonRedondoAzulConSombra"
+        android:layout_width="393dp"
+        android:layout_height="53dp"
         android:layout_gravity="top"
         android:text="Continuar"
-        />
+        android:textSize="18sp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

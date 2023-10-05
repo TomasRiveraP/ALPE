@@ -1,19 +1,38 @@
 <resources>
+
     <string name="app_name">ALPE</string>
     <string name="channel_description">canal para enviar notificaciones</string>
     <string name="tipos_de_peces" />
 
     <string-array name="tipos_de_peces">
-        <item>Pez 1</item>
-        <item>Pez 2</item>
-        <item>Pez 3</item>
-        <!-- Agrega más tipos de pez según sea necesario -->
+        <item>Oranda</item>
+        <item>Neonchino</item>
+        <item>Cebra</item>
+        <item>Guppys</item>
+        <item>Tetras</item>
+        <item>Bettas</item>
+        <item>Guramis</item>
+        <item>Disco</item>
+        <item>Angel</item>
+        <item>Ramirezi</item>
+        <item>Platys</item>
+        <item>Mollys</item>
+        <item>Killis</item>
+
     </string-array>
     <string-array name="informacion_de_peces">
-        <item>Información del Pez 1</item>
-        <item>Información del Pez 2</item>
-        <item>Información del Pez 3</item>
-        <!-- Agrega más información de peces correspondiente a los tipos de pez -->
+        <item>El pez Oranda es muy tranquilo y social es aconsejable que tenga compañeros de triple cola como, por ejemplo, el pez fantail o telescópicos y otros peces de agua fría. No es un buen nadador y la protuberancia carnosas de la cabeza puede ocasionarle problemas de visión, por lo que hay que asegurarse de la correcta gestión de la comida.</item>
+        <item>El neón chino procede del Sur de China, esta especie es muy resistente y puede vivir con peces pequeños y medianos. Pero aun así debes tener cuidado con la combinación de los habitantes de tu acuario, podría ser la cena de los peces más grandes del biotopo.</item>
+        <item>danio rerio o zebrafish, es un pez de la familia de los ciprínidos, se reproduce con facilidad en un acuario, ademas tiene un temperamento tranquilo y gregario, lo hace ideal para un acuario comunitario, en el que puede convivir con otras especies de peces.</item>
+        <item>Su pequeño tamaño, fácil mantenimiento y su propensión a reproducirse en prácticamente cualquier ambiente, los ha convertido en uno de los peces de agua dulce más ubicuos y valorados.</item>
+        <item>Sus escamas están salpicadas de increíbles colores: azules neón, rojos, naranjas, negros y blancos, amarillos... su cuerpo tiene una forma estilizada y su aleta caudal o cola es generalmente pequeña (a diferencia de los guppys). Tienden a agruparse y nadan en bancos, lo que crea una armonía en el paisaje de nuestro acuario difícil de superar por otras especies de natación más caótica.</item>
+        <item>Los peces betta tienen colores vibrantes y llamativos. Estos peces de agua dulce para acuario se caracterizan por tener largas aletas, que despliegan o peinan hacia atrás creando efectos visuales de color y movimiento totalmente hipnóticos. Pueden medir más de 6 cm. </item>
+        <item>Los guramis son peces de agua dulce para acuario muy llamativos: tienen un cuerpo aplanado y cuadrangular debido a la extensión de las aletas, con un despliegue muy variopinto de colores en algunas especies. Son peces de agua dulce grandes: sin ir más lejos el gurami "enano", que es la especie más pequeña, alcanza los 6 cm de longitud. Hay guramis que pueden alcanzar los 13 y hasta los 30 cm de longitud. </item>
+        <item>Provienen del Amazonas, donde las pirañas y otros peces son sus depredadores naturales, por lo que han desarrollado conductas asustadizas. Tienen formas, tamaños y colores tan especiales que se han ganado la admiración de cualquier aficionado a los acuarios.</item>
+        <item>Su cuerpo es aplanado lateralmente, casi romboidal gracias a sus aletas. Estos peces de agua dulce son lo más parecido que vas a encontrar a los grandes peces ángel marinos. La especie más grande puede alcanzar los 20 cm de longitud y 50 cm de altura con las aletas desplegadas.</item>
+        <item>Sus colores amarillos, naranjas, negros, rojos y azules eléctricos llaman increíblemente la atención. Son originarios de la cuenca del Orinoco, en Sudamérica. La forma de su cuerpo es estilizada, proporcionada y armónica. Es uno de los peces de agua dulce para acuario que mejor quedan en un tanque plantado. Además, no se necesita demasiado espacio para mantenerlos.</item>
+        <item>Son fáciles de mantener, de reproducir, y tienen un tamaño perfecto para mantener en casi cualquier tipo de acuario. Provienen de América, y destacan por sus combinaciones de rojo y negro, o azul y negro. Tienen un cuerpo algo más rechoncho que los guppys y la aleta caudal menos llamativa, pero siguen siendo peces de agua dulce para acuario bonitos y resistentes. </item>
+        <item>Bajos requerimientos, pequeño tamaño, facilidad para reproducirse, comportamiento apto para acuarios comunitarios, etc. Realizan una buena labor en el acuario limpiándolo de algas. Se suele recomendar que se mantengan 3-5 hembras por cada macho, para que su atención no se centre en una sola.  </item>
+        <item>Los killis son uno de los tipos de peces de agua dulce para acuario más queridos por los principiantes: tienen colores que rivalizan con otros peces más grandes y son fáciles de mantener. Cabe destacar que los killis tienden a saltar del agua, pudiendo salirse del acuario.   </item>
     </string-array>
-
 </resources>

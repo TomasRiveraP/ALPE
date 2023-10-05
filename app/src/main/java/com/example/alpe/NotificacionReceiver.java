@@ -15,7 +15,7 @@ import androidx.core.app.NotificationManagerCompat;
 public class NotificacionReceiver extends Service {
 
     private static final int NOTIFICATION_ID = 1;
-    private static final long INTERVAL_MS = 60 * 1000; // Notificar cada 1 hora
+    private static final long INTERVAL_MS = 30 * 1000;
 
     private Handler handler = new Handler();
     private Runnable runnable = new Runnable() {

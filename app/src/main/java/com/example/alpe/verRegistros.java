@@ -27,9 +27,7 @@ public class verRegistros extends Activity {
 
         textViewRegistros = findViewById(R.id.textViewRegistros);
 
-
         databaseReference = FirebaseDatabase.getInstance().getReference("registros");
-
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override

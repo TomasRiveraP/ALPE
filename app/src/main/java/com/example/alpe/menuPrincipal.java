@@ -1,10 +1,7 @@
 package com.example.alpe;
 
 import android.app.Activity;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,13 +13,13 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 public class menuPrincipal extends Activity {
     private DatabaseReference databaseReference;
@@ -31,18 +28,7 @@ public class menuPrincipal extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menuprincipal);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            String description = getString(R.string.channel_description);
 
-            NotificationChannel channel = new NotificationChannel("mi_canal_id", "Mi Canal", NotificationManager.IMPORTANCE_DEFAULT);
-            channel.setDescription(description);
-            NotificationManager notificationManager = getSystemService(NotificationManager.class);
-            notificationManager.createNotificationChannel(channel);
-        }
-
-
-        Intent intent = new Intent(this, NotificacionReceiver.class);
-        startService(intent);
         FirebaseApp.initializeApp(this);
         databaseReference = FirebaseDatabase.getInstance().getReference("registros");
 
@@ -88,7 +74,7 @@ public class menuPrincipal extends Activity {
                         startActivity(intent);
                         return true;
                     case R.id.opcion2:
-                        Intent intent2 = new Intent(menuPrincipal.this, TuPez.class);
+                        Intent intent2 = new Intent(menuPrincipal.this, SelTuPez.class);
                         startActivity(intent2);
                         return true;
                     // Agrega más casos según sea necesario para otras opciones
