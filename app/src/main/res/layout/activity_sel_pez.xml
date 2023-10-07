@@ -44,5 +44,13 @@
             android:text=""
             android:textSize="18sp"
             android:textColor="#000000" />
+        <Button
+            android:id="@+id/sendInfoButton"
+            style="@style/BotonRedondoAzulConSombra"
+            android:layout_width="350dp"
+            android:layout_height="53dp"
+            android:layout_gravity="top"
+            android:text="Agregar a tus peces"
+            android:textSize="18sp" />
     </LinearLayout>
 </LinearLayout>

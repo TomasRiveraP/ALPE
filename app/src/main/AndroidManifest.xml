@@ -30,6 +30,9 @@
             android:name=".SelTuPez"
             android:exported="true" />
         <activity
+            android:name=".MisPeces"
+            android:exported="true" />
+        <activity
             android:name=".verRegistros"
             android:exported="true" />
         <activity

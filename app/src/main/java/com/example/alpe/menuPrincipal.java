@@ -77,7 +77,10 @@ public class menuPrincipal extends Activity {
                         Intent intent2 = new Intent(menuPrincipal.this, SelTuPez.class);
                         startActivity(intent2);
                         return true;
-                    // Agrega más casos según sea necesario para otras opciones
+                    case R.id.opcion3:
+                        Intent intent3 = new Intent(menuPrincipal.this, MisPeces.class);
+                        startActivity(intent3);
+                        return true;
                     default:
                         return false;
                 }

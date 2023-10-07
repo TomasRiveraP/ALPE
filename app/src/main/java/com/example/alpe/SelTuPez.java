@@ -1,10 +1,12 @@
 package com.example.alpe;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -38,10 +40,23 @@ public class SelTuPez extends Activity {
                 int imageResourceId = getResources().getIdentifier(selectedFish.toLowerCase(), "drawable", getPackageName());
                 int descriptionIndex = position;
 
-
                 pezImg.setImageResource(imageResourceId);
                 pezInfoTextView.setText(fishDescriptions[descriptionIndex]);
+                Button sendInfoButton = findViewById(R.id.sendInfoButton);
+                sendInfoButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // Configura un Intent para enviar la información del pez
+                        Intent intent = new Intent(SelTuPez.this, MisPeces.class);
+                        intent.putExtra("imagenPez", imageResourceId);
+                        intent.putExtra("descripcionPez", fishDescriptions[descriptionIndex]);
+
+                        // Inicia la otra actividad
+                        startActivity(intent);
+                    }
+                });
             }
+
 
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
@@ -49,20 +64,4 @@ public class SelTuPez extends Activity {
             }
         });
     }
-
-
-    /*private String obtenerInformacionDelPez(String selectedFish) {
-
-        String[] nombresDePeces = getResources().getStringArray(R.array.tipos_de_peces);
-        String[] informacionDePeces = getResources().getStringArray(R.array.informacion_de_peces);
-        int[] pezImg = {R.drawable.pez1, R.drawable.pez2, /* ... */;
-
-        /*for (int i = 0; i < nombresDePeces.length; i++) {
-            if (nombresDePeces[i].equals(selectedFish)) {
-                return new Pez(selectedFish, pezImg[i], informacionDePeces[i]);
-            }
-        }
-
-        return "Información no disponible para este pez.";
-    }*/
 }
