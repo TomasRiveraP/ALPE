@@ -23,7 +23,7 @@ import java.util.Locale;
 
 public class menuPrincipal extends Activity {
     private DatabaseReference databaseReference;
-    private static final String ESP8266_IP = "192.168.5.110";
+    private static final String ESP8266_IP = "192.168.5.103";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,13 +94,12 @@ public class menuPrincipal extends Activity {
             @Override
             public void run() {
                 try {
-                    // URL para la solicitud GET al ESP8266
+
                     URL url = new URL("http://" + ESP8266_IP + "/accion");
 
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     conn.setRequestMethod("GET");
 
-                    // Obtener la respuesta
                     int responseCode = conn.getResponseCode();
 
                     if (responseCode == HttpURLConnection.HTTP_OK) {
@@ -119,8 +118,7 @@ public class menuPrincipal extends Activity {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                // Manejar la respuesta del ESP8266 aquí
-                                // Por ejemplo, mostrar un Toast con la respuesta
+
                                 Toast.makeText(menuPrincipal.this, respuesta, Toast.LENGTH_SHORT).show();
                             }
                         });

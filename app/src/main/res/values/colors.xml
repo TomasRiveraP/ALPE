@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <resources>
     <color name="Blanco">#FFFFFF</color>
     <color name="Gris">#3B3B3B</color>
@@ -7,4 +8,5 @@
     <color name="Azul3">#0075B1</color>
     <color name="Azul4">#004177</color>
     <color name="Azul5">#002759</color>
+    <color name="Degradado">#002759</color>
 </resources>

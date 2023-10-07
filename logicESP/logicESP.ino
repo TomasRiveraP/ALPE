@@ -10,7 +10,7 @@ const char *password = "Bi7biana";
 
 
 
-ESP8266WebServer server(443);
+ESP8266WebServer server(80);
 Servo miServo;
 int servoPin = D1;
 

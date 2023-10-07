@@ -16,20 +16,16 @@
         android:text="Tus peces"
         android:textSize="18sp"
         android:textStyle="bold"
+        android:textColor="#000000"
         />
-
-    <ImageView
-        android:id="@+id/fishImageView"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
-        android:layout_gravity="center"/>
-
     <TextView
-        android:id="@+id/fishInfoTextView"
+        android:id="@+id/fishInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text=""
         android:textSize="18sp"
-        android:textColor="#000000" />
+        android:textStyle="bold"
+        android:textColor="#000000"
+        />
 
 </LinearLayout>
