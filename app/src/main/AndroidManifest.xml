@@ -30,7 +30,7 @@
             android:name=".SelTuPez"
             android:exported="true" />
         <activity
-            android:name=".MisPeces"
+            android:name=".verPeces"
             android:exported="true" />
         <activity
             android:name=".verRegistros"
@@ -39,7 +39,7 @@
             android:name=".menuPrincipal"
             android:exported="true" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Inicio"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

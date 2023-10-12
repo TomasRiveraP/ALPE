@@ -15,7 +15,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MisPeces extends Activity {
+public class verPeces extends Activity {
     private TextView pezInfoTextView;
     private TextView pezName;
 

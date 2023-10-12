@@ -9,7 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class MainActivity extends Activity {
+public class Inicio extends Activity {
 
 
     @Override
@@ -37,7 +37,7 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(MainActivity.this, menuPrincipal.class);
+                Intent intent = new Intent(Inicio.this, menuPrincipal.class);
                 startActivity(intent);
             }
         });

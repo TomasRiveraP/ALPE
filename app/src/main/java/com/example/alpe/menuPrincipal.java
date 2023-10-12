@@ -2,11 +2,15 @@ package com.example.alpe;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.PopupMenu;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.FirebaseApp;
@@ -20,39 +24,25 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
-
 public class menuPrincipal extends Activity {
     private DatabaseReference databaseReference;
     private static final String ESP8266_IP = "192.168.5.103";
+    private ProgressBar porcentajeProgressBar;
+    private TextView porcentajeTextView;
+    private Handler handler = new Handler();
+    private int delay = 1000; // Intervalo de actualización en milisegundos
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menuprincipal);
-
         FirebaseApp.initializeApp(this);
         databaseReference = FirebaseDatabase.getInstance().getReference("registros");
-
-        Button alimentar = findViewById(R.id.btnAlimentar);
         Button btnOpenMenu = findViewById(R.id.btnOpenMenu);
-        alimentar.setOnClickListener(new View.OnClickListener() {
+        porcentajeProgressBar = findViewById(R.id.porcentajeProgressBar);
+        porcentajeTextView = findViewById(R.id.porcentajeTextView);
+        startRepeatingTask();
 
-            @Override
-            public void onClick(View v) {
-                String id = databaseReference.push().getKey();
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.getDefault());
-                String fecha = sdf.format(new Date());
-
-                String contenido = "Registro generado el " + fecha;
-
-                Registro registro = new Registro(id, fecha, contenido);
-
-                if (id != null) {
-                    databaseReference.child(id).setValue(registro);
-                }
-                Toast.makeText(menuPrincipal.this, "Botón pulsado a las " + fecha, Toast.LENGTH_SHORT).show();
-                ejecutarAccion();
-            }
-        });
+        alimentarPeces();
         btnOpenMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,11 +50,14 @@ public class menuPrincipal extends Activity {
             }
         });
     }
-
+    @Override
+    protected void onPause() {
+        super.onPause();
+        stopRepeatingTask();
+    }
     private void showPopupMenu(View view) {
         PopupMenu popupMenu = new PopupMenu(this, view);
         popupMenu.getMenuInflater().inflate(R.menu.menu_popup, popupMenu.getMenu());
-
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
@@ -78,7 +71,7 @@ public class menuPrincipal extends Activity {
                         startActivity(intent2);
                         return true;
                     case R.id.opcion3:
-                        Intent intent3 = new Intent(menuPrincipal.this, MisPeces.class);
+                        Intent intent3 = new Intent(menuPrincipal.this, verPeces.class);
                         startActivity(intent3);
                         return true;
                     default:
@@ -86,16 +79,14 @@ public class menuPrincipal extends Activity {
                 }
             }
         });
-
         popupMenu.show();
     }
-    private void ejecutarAccion() {
+    public void conexion() {
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
-
-                    URL url = new URL("http://" + ESP8266_IP + "/accion");
+                    URL url = new URL("http://" + ESP8266_IP + "/alimentar");
 
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     conn.setRequestMethod("GET");
@@ -131,4 +122,77 @@ public class menuPrincipal extends Activity {
             }
         }).start();
     }
+    public void alimentarPeces(){
+        Button alimentar = findViewById(R.id.btnAlimentar);
+        alimentar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                crearRegistro();
+                conexion();
+            }
+        });
+    }
+    public void crearRegistro(){
+        String id = databaseReference.push().getKey();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.getDefault());
+        String fecha = sdf.format(new Date());
+        String contenido = "Registro generado el " + fecha;
+        Registro registro = new Registro(id, fecha, contenido);
+        if (id != null) {
+            databaseReference.child(id).setValue(registro);
+        }
+        Toast.makeText(menuPrincipal.this, "Botón pulsado a las " + fecha, Toast.LENGTH_SHORT).show();
+    }
+    private class ConsultarPorcentajeTask extends AsyncTask<Void, Void, String> {
+        @Override
+        protected String doInBackground(Void... voids) {
+            try {
+                URL url = new URL("http://" + ESP8266_IP + "/ultrasonico");
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("GET");
+
+                BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                StringBuilder result = new StringBuilder();
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    result.append(line);
+                }
+                reader.close();
+
+                return result.toString();
+            } catch (Exception e) {
+                e.printStackTrace();
+                return "Error";
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            if (!result.equals("Error")) {
+
+                int porcentaje = (int) Double.parseDouble(result);
+                porcentajeProgressBar.setProgress(porcentaje);
+                porcentajeTextView.setText(porcentaje + "%");
+            }
+        }
+    }
+    private void startRepeatingTask() {
+        statusChecker.run();
+    }
+
+    private void stopRepeatingTask() {
+        handler.removeCallbacks(statusChecker);
+    }
+
+    Runnable statusChecker = new Runnable() {
+        @Override
+        public void run() {
+            try {
+                new ConsultarPorcentajeTask().execute();
+            } finally {
+                handler.postDelayed(this, delay);
+            }
+        }
+    };
+
 }
