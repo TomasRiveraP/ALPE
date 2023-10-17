@@ -26,11 +26,11 @@ import java.util.Date;
 import java.util.Locale;
 public class menuPrincipal extends Activity {
     private DatabaseReference databaseReference;
-    private static final String ESP8266_IP = "192.168.5.103";
+    private static final String ESP8266_IP = "192.168.5.104";
     private ProgressBar porcentajeProgressBar;
     private TextView porcentajeTextView;
     private Handler handler = new Handler();
-    private int delay = 1000; // Intervalo de actualización en milisegundos
+    private int delay = 10000; // Intervalo de actualización en milisegundos
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -169,10 +169,12 @@ public class menuPrincipal extends Activity {
         @Override
         protected void onPostExecute(String result) {
             if (!result.equals("Error")) {
-
                 int porcentaje = (int) Double.parseDouble(result);
                 porcentajeProgressBar.setProgress(porcentaje);
                 porcentajeTextView.setText(porcentaje + "%");
+                if(porcentaje <= 20){
+                    Toast.makeText(menuPrincipal.this, "Llene el tanque de almacenamiento de alimento", Toast.LENGTH_SHORT).show();
+                }
             }
         }
     }
