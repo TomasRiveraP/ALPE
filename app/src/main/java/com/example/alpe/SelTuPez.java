@@ -35,7 +35,7 @@ public class SelTuPez extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sel_pez);
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("Mis Peces");
+        databaseReference = FirebaseDatabase.getInstance().getReference("MisPeces");
 
         numberEditText = findViewById(R.id.numberEditText);
         addButton = findViewById(R.id.addButton);

@@ -27,7 +27,7 @@ public class verPeces extends Activity {
 
         pezInfoTextView = findViewById(R.id.fishInfo);
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("Mis Peces");
+        databaseReference = FirebaseDatabase.getInstance().getReference("MisPeces");
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
