@@ -12,5 +12,8 @@
         android:id="@+id/opcion3"
         android:title="Mis peces"
         android:textSize="18sp" />
-
+    <item
+        android:id="@+id/opcion4"
+        android:title="Mi pecera"
+        android:textSize="18sp" />
 </menu>

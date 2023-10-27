@@ -25,21 +25,31 @@
         tools:layout_editor_absoluteY="0dp" />
 
     <TextView
-        android:id="@+id/cantAlim"
-        android:layout_width="274dp"
-        android:layout_height="54dp"
-        android:layout_marginStart="74dp"
-        android:layout_marginEnd="71dp"
+        android:id="@+id/CTextView"
+        android:layout_width="242dp"
+        android:layout_height="35dp"
+        android:layout_margin="8dp"
         android:gravity="center"
-        android:text="Capacidad del tanque disponible"
+        android:text="Pulsa el botón 'Consultar' para saber el nivel de alimento disponible"
         android:textColor="#000000"
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/porcentajeProgressBar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintStart_toStartOf="@+id/imageView" />
+        app:layout_constraintBottom_toTopOf="@+id/consultarPorcentajeButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        tools:layout_editor_absoluteX="82dp"
+        tools:layout_editor_absoluteY="531dp" />
+
+    <Button
+        android:id="@+id/consultarPorcentajeButton"
+        style="@style/BotonRedondoAzulConSombra"
+        android:layout_width="172dp"
+        android:layout_height="35dp"
+        android:layout_margin="8dp"
+        android:text="Consultar"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnAlimentar"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ProgressBar
         android:id="@+id/porcentajeProgressBar"
@@ -54,21 +64,21 @@
         android:progressDrawable="@drawable/progressbar_color"
         app:layout_constraintBottom_toTopOf="@+id/btnAlimentar"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
-        app:layout_constraintStart_toStartOf="parent" />
+         />
+
     <TextView
         android:id="@+id/porcentajeTextView"
         android:layout_width="207dp"
         android:layout_height="34dp"
         android:layout_margin="8dp"
         android:layout_marginEnd="368dp"
+        android:gravity="center"
         android:text=""
         android:textColor="#000000"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:gravity="center"
         app:layout_constraintBottom_toTopOf="@+id/btnAlimentar"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintEnd_toEndOf="@+id/imageView" />
     <Button
         android:id="@+id/btnAlimentar"
         style="@style/BotonRedondoAzulConSombra"

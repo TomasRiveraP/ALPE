@@ -25,7 +25,9 @@
                 <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
             </intent-filter>
         </activity>
-
+        <activity
+            android:name=".Pecera"
+            android:exported="true" />
         <activity
             android:name=".SelTuPez"
             android:exported="true" />

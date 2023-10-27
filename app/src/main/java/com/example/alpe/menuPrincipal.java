@@ -26,7 +26,7 @@ import java.util.Date;
 import java.util.Locale;
 public class menuPrincipal extends Activity {
     private DatabaseReference databaseReference;
-    private static final String ESP8266_IP = "192.168.5.104";
+    public static final String ESP8266_IP = "192.168.5.107";
     private ProgressBar porcentajeProgressBar;
     private TextView porcentajeTextView;
     private Handler handler = new Handler();
@@ -40,7 +40,8 @@ public class menuPrincipal extends Activity {
         Button btnOpenMenu = findViewById(R.id.btnOpenMenu);
         porcentajeProgressBar = findViewById(R.id.porcentajeProgressBar);
         porcentajeTextView = findViewById(R.id.porcentajeTextView);
-        startRepeatingTask();
+        Button consultarPorcentajeButton = findViewById(R.id.consultarPorcentajeButton);
+        ///startRepeatingTask();
 
         alimentarPeces();
         btnOpenMenu.setOnClickListener(new View.OnClickListener() {
@@ -49,11 +50,17 @@ public class menuPrincipal extends Activity {
                 showPopupMenu(v);
             }
         });
+        consultarPorcentajeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new ConsultarPorcentajeTask().execute();
+            }
+        });
     }
     @Override
     protected void onPause() {
         super.onPause();
-        stopRepeatingTask();
+        ///stopRepeatingTask();
     }
     private void showPopupMenu(View view) {
         PopupMenu popupMenu = new PopupMenu(this, view);
@@ -73,6 +80,10 @@ public class menuPrincipal extends Activity {
                     case R.id.opcion3:
                         Intent intent3 = new Intent(menuPrincipal.this, verPeces.class);
                         startActivity(intent3);
+                        return true;
+                    case R.id.opcion4:
+                        Intent intent4 = new Intent(menuPrincipal.this, Pecera.class);
+                        startActivity(intent4);
                         return true;
                     default:
                         return false;
@@ -178,7 +189,8 @@ public class menuPrincipal extends Activity {
             }
         }
     }
-    private void startRepeatingTask() {
+
+    /*private void startRepeatingTask() {
         statusChecker.run();
     }
 
@@ -195,6 +207,6 @@ public class menuPrincipal extends Activity {
                 handler.postDelayed(this, delay);
             }
         }
-    };
+    };*/
 
 }
