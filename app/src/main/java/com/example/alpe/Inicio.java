@@ -11,13 +11,13 @@ import android.widget.Button;
 
 public class Inicio extends Activity {
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        overridePendingTransition(R.anim.fade_in, android.R.anim.fade_out);
 
-        setContentView(R.layout.activity_main);
+
+
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_inicio);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             String description = getString(R.string.channel_description);

@@ -152,7 +152,7 @@ public class menuPrincipal extends Activity {
         if (id != null) {
             databaseReference.child(id).setValue(registro);
         }
-        Toast.makeText(menuPrincipal.this, "Botón pulsado a las " + fecha, Toast.LENGTH_SHORT).show();
+
     }
     private class ConsultarPorcentajeTask extends AsyncTask<Void, Void, String> {
         @Override
