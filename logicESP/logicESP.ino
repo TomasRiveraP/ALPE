@@ -11,8 +11,8 @@ const char *password = "Bi7biana";
 // Pins
 #define PIN_TRIG D3
 #define PIN_ECHO D2
-#define PIN_SERVO D1
-#define PIN_DS18B20 D4
+#define PIN_SERVO D8
+#define PIN_DS18B20 D7
 
 // Ultrasonic Sensor
 float porcentaje = 0;

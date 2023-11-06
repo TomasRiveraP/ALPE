@@ -1,26 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    tools:context=".Pecera"
+    android:background="@drawable/degradado">
+
+    <TextView
+        android:id="@+id/pec"
+        android:layout_width="241dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="16dp"
+        android:gravity="center"
+        android:text="Condiciones biologicas de tu pecera:"
+        android:textSize="22sp"
+        android:textColor="#000000"/>
 
     <TextView
         android:id="@+id/temperaturaTextView"
-        android:layout_width="match_parent"
+        android:layout_width="168dp"
         android:layout_height="wrap_content"
-        android:text="Temperatura: -- °C"
-        android:textSize="24sp"
-        android:gravity="center"
         android:layout_gravity="center"
-        android:layout_marginBottom="16dp"/>
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:text="Temperatura: -- °C"
+        android:textSize="18sp"
+        android:textColor="#000000"/>
 
     <Button
         android:id="@+id/actualizarButton"
+        style="@style/BotonRedondoAzulConSombra"
+        android:layout_width="191dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="8dp"
+        android:text="obtener temp" />
+
+    <TextView
+        android:id="@+id/tph"
+        android:layout_width="183dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="16dp"
+        android:gravity="center"
+        android:text="Ingresa el PH del agua de tu pecera:"
+        android:textSize="18sp"
+        android:textColor="#000000"/>
+
+    <EditText
+        android:id="@+id/phEditText"
+        android:layout_width="183dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:hint=""
+        android:textColor="#000000"/>
+
+    <Button
+        android:id="@+id/calcular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Actualizar"
-        android:layout_gravity="center"/>
+        style="@style/BotonRedondoAzulConSombra"
+        android:text="Calcular"
+        android:layout_gravity="center"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/mensajeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text=""
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/instructionsTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Quieres saber como conocer el ph de tu pecera?"
+        android:textSize="18sp"/>
+
+    <Button
+        android:id="@+id/tutorial"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/BotonRedondoAzulConSombra"
+        android:text="Pulsa aqui"
+        android:layout_gravity="left"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"/>
 
 </LinearLayout>
