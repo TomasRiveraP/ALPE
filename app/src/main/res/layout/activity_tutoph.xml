@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -9,5 +9,46 @@
     android:padding="16dp"
     tools:context=".tutoPH"
     android:background="@drawable/degradado">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/instructionsTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:text="Quieres saber como conocer el ph de tu pecera?"
+            android:textSize="18sp"
+            android:textColor="#000000"/>
+
+        <WebView
+            android:id="@+id/webView"
+            android:layout_width="match_parent"
+            android:layout_height="250sp"/>
+
+        <WebView
+            android:id="@+id/video2"
+            android:layout_width="match_parent"
+            android:layout_height="250sp"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/instructionsTView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:text="Ph alto o bajo?"
+            android:textSize="18sp"
+            android:textColor="#000000"/>
+
+        <WebView
+            android:id="@+id/video3"
+            android:layout_width="match_parent"
+            android:layout_height="250sp"
+            android:layout_marginTop="10dp"/>
+
+    </LinearLayout>
+</ScrollView>

@@ -51,10 +51,8 @@ public class Pecera extends menuPrincipal{
             }
         });
         tutorial.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
-
                 Intent intent = new Intent(Pecera.this, tutoPH.class);
                 startActivity(intent);
             }

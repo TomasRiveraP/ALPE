@@ -84,7 +84,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="Quieres saber como conocer el ph de tu pecera?"
-        android:textSize="18sp"/>
+        android:textSize="18sp"
+        android:textColor="#000000"/>
 
     <Button
         android:id="@+id/tutorial"

@@ -53,6 +53,10 @@
             android:exported="true"
             android:screenOrientation="portrait"/>
         <activity
+            android:name=".tutoPH"
+            android:exported="true"
+            android:screenOrientation="portrait"/>
+        <activity
             android:name=".Splash"
             android:exported="true"
             android:screenOrientation="portrait">
