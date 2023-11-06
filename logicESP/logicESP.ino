@@ -38,7 +38,7 @@ void setup() {
   pinMode(PIN_ECHO, INPUT);
   server.on("/ultrasonico", HTTP_GET, mandarPorcentaje);
 
-  miServo.attach(PIN_SERVO); // Connect the servo
+  miServo.attach(PIN_SERVO); // Conectar el servo
   miServo.write(90); // Initial servo position
   server.on("/alimentar", HTTP_GET, moverServo);
   
@@ -77,12 +77,12 @@ void conectarWifi() {
 
 void moverServo() {
   if (!servoEnMovimiento) {
-    miServo.write(0); // Rotate the servo to a specific position (0 degrees)
-    server.send(200, "text/plain", "Alimentando..."); // Send a response
-    delay(10000); // Timer to return the servo after 10 seconds
-    miServo.write(90); // Return to the initial position (90 degrees)
+    miServo.write(0); 
+    server.send(200, "text/plain", "Alimentando..."); 
+    delay(10000); 
+    miServo.write(90); 
     servoEnMovimiento = true;
-    delay(1000); // Delay to prevent multiple requests
+    delay(1000);
     servoEnMovimiento = false;
   } else {
     server.send(400, "text/plain", "Ya se está en movimiento");
