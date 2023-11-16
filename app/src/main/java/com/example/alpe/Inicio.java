@@ -18,6 +18,7 @@ public class Inicio extends Activity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inicio);
+        startForegroundService(new Intent(Inicio.this, NotificacionReceiver.class));
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             String description = getString(R.string.channel_description);

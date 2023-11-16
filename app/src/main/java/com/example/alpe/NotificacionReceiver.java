@@ -1,80 +1,55 @@
 package com.example.alpe;
 
-import android.app.PendingIntent;
-import android.app.Service;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.os.Handler;
-import android.os.IBinder;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.Context;
+import android.os.Build;
 
-import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
 
-public class NotificacionReceiver extends Service {
+import com.google.firebase.messaging.FirebaseMessagingService;
+import com.google.firebase.messaging.RemoteMessage;
 
-    private static final int NOTIFICATION_ID = 1;
-    private static final long INTERVAL_MS = 30 * 1000;
+public class NotificacionReceiver extends FirebaseMessagingService {
 
-    private Handler handler = new Handler();
-    private Runnable runnable = new Runnable() {
-        @Override
-        public void run() {
-            // Crear y mostrar la notificación aquí
-            mostrarNotificacion();
+    @Override
+    public void onMessageReceived(RemoteMessage remoteMessage) {
+        super.onMessageReceived(remoteMessage);
 
-            // Programar la próxima notificación
-            handler.postDelayed(this, INTERVAL_MS);
+        // Aquí manejas el mensaje recibido
+        if (remoteMessage.getNotification() != null) {
+            // Mensaje de notificación
+            String title = remoteMessage.getNotification().getTitle();
+            String body = remoteMessage.getNotification().getBody();
+            mostrarNotificacion(title, body);
         }
-    };
 
-    @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        // Iniciar el servicio
-        handler.post(runnable);
-        return START_STICKY;
-    }
-
-    @Override
-    public void onDestroy() {
-        // Detener el servicio
-        handler.removeCallbacks(runnable);
-        super.onDestroy();
-    }
-
-    private void mostrarNotificacion() {
-        Intent intent = new Intent(this, menuPrincipal.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
-
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "mi_canal_id")
-                .setSmallIcon(R.drawable.ic_notification)
-                .setContentTitle("My notification")
-                .setContentText("Much longer text that cannot fit one line...")
-                .setStyle(new NotificationCompat.BigTextStyle()
-                        .bigText("Much longer text that cannot fit one line..."))
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
-
-
-        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
-        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
+        // Aquí puedes manejar los datos adicionales del mensaje (si los hay)
+        if (remoteMessage.getData().size() > 0) {
+            // Datos adicionales
+            String datosAdicionales = remoteMessage.getData().toString();
+            // Manejar los datos según sea necesario
         }
-        notificationManager.notify(NOTIFICATION_ID, builder.build());
     }
+    private void mostrarNotificacion(String title, String body) {
+        String channelId = "mi_canal_id";
+        String channelName = "Mi Canal";
 
-    @Nullable
-    @Override
-    public IBinder onBind(Intent intent) {
-        return null;
+        NotificationManager notificationManager =
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel =
+                    new NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_HIGH);
+            notificationManager.createNotificationChannel(channel);
+        }
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, channelId)
+                .setSmallIcon(R.mipmap.ic_launcher) // Icono de la notificación
+                .setContentTitle(title) // Título de la notificación
+                .setContentText(body) // Contenido de la notificación
+                .setPriority(NotificationCompat.PRIORITY_HIGH); // Prioridad de la notificación
+
+        notificationManager.notify(1, builder.build());
     }
-
 }

@@ -1,13 +1,19 @@
 package com.example.alpe;
 
 import android.annotation.SuppressLint;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import androidx.core.app.NotificationCompat;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -66,6 +72,7 @@ public class Pecera extends menuPrincipal{
                     @Override
                     public void onResponse(String response) {
                         temperaturaTextView.setText("Temperatura: " + response + " °C");
+                        mostrarNotificacion("Temperatura actual", "La temperatura es: " + response + " °C");
                     }
                 },
                 new Response.ErrorListener() {
@@ -106,5 +113,26 @@ public class Pecera extends menuPrincipal{
         } else {
             mensajeTextView.setText("Por favor, ingrese valores de pH y temperatura.");
         }
+    }
+    private void mostrarNotificacion(String title, String body) {
+        String channelId = "mi_canal_id";
+        String channelName = "Mi Canal";
+
+        NotificationManager notificationManager =
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel =
+                    new NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_HIGH);
+            notificationManager.createNotificationChannel(channel);
+        }
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, channelId)
+                .setSmallIcon(R.mipmap.ic_launcher) // Icono de la notificación
+                .setContentTitle(title) // Título de la notificación
+                .setContentText(body) // Contenido de la notificación
+                .setPriority(NotificationCompat.PRIORITY_HIGH); // Prioridad de la notificación
+
+        notificationManager.notify(1, builder.build());
     }
 }

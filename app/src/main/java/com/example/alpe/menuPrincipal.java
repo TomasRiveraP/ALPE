@@ -1,10 +1,13 @@
 package com.example.alpe;
 
 import android.app.Activity;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -12,6 +15,8 @@ import android.widget.PopupMenu;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.core.app.NotificationCompat;
 
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DatabaseReference;
@@ -29,8 +34,7 @@ public class menuPrincipal extends Activity {
     public static final String ESP8266_IP = "192.168.5.107";
     private ProgressBar porcentajeProgressBar;
     private TextView porcentajeTextView;
-    private Handler handler = new Handler();
-    private int delay = 10000; // Intervalo de actualización en milisegundos
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +47,7 @@ public class menuPrincipal extends Activity {
         Button consultarPorcentajeButton = findViewById(R.id.consultarPorcentajeButton);
         ///startRepeatingTask();
 
-        alimentarPeces();
+
         btnOpenMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,6 +89,10 @@ public class menuPrincipal extends Activity {
                         Intent intent4 = new Intent(menuPrincipal.this, Pecera.class);
                         startActivity(intent4);
                         return true;
+                    case R.id.opcion5:
+                        Intent intent5 = new Intent(menuPrincipal.this, contacto.class);
+                        startActivity(intent5);
+                        return true;
                     default:
                         return false;
                 }
@@ -92,7 +100,7 @@ public class menuPrincipal extends Activity {
         });
         popupMenu.show();
     }
-    public void conexion() {
+    public void alimentar() {
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -138,8 +146,9 @@ public class menuPrincipal extends Activity {
         alimentar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 crearRegistro();
-                conexion();
+                alimentar();
             }
         });
     }
@@ -179,15 +188,42 @@ public class menuPrincipal extends Activity {
 
         @Override
         protected void onPostExecute(String result) {
+            Button alimentar = findViewById(R.id.btnAlimentar);
             if (!result.equals("Error")) {
                 int porcentaje = (int) Double.parseDouble(result);
                 porcentajeProgressBar.setProgress(porcentaje);
                 porcentajeTextView.setText(porcentaje + "%");
-                if(porcentaje <= 20){
-                    Toast.makeText(menuPrincipal.this, "Llene el tanque de almacenamiento de alimento", Toast.LENGTH_SHORT).show();
+                if(porcentaje > 10){
+                    alimentar.setEnabled(true);
+                    alimentarPeces();
+                }else if(porcentaje <= 10){
+                    alimentar.setEnabled(false);
+                    mostrarNotificacion("Alerta!!!", "No hay alimento suficiente");
                 }
             }
         }
+
+    }
+    private void mostrarNotificacion(String title, String body) {
+        String channelId = "mi_canal_id";
+        String channelName = "Mi Canal";
+
+        NotificationManager notificationManager =
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel =
+                    new NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_HIGH);
+            notificationManager.createNotificationChannel(channel);
+        }
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, channelId)
+                .setSmallIcon(R.mipmap.ic_launcher) // Icono de la notificación
+                .setContentTitle(title) // Título de la notificación
+                .setContentText(body) // Contenido de la notificación
+                .setPriority(NotificationCompat.PRIORITY_HIGH); // Prioridad de la notificación
+
+        notificationManager.notify(1, builder.build());
     }
 
     /*private void startRepeatingTask() {
