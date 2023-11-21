@@ -31,7 +31,7 @@ import java.util.Date;
 import java.util.Locale;
 public class menuPrincipal extends Activity {
     private DatabaseReference databaseReference;
-    public static final String ESP8266_IP = "192.168.5.107";
+    public static final String ESP8266_IP = "192.168.137.91";
     private ProgressBar porcentajeProgressBar;
     private TextView porcentajeTextView;
 
@@ -146,9 +146,9 @@ public class menuPrincipal extends Activity {
         alimentar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 crearRegistro();
                 alimentar();
+                mostrarNotificacion("Gracias!!!", "Gracias por alimentarnos");
             }
         });
     }
@@ -161,7 +161,6 @@ public class menuPrincipal extends Activity {
         if (id != null) {
             databaseReference.child(id).setValue(registro);
         }
-
     }
     private class ConsultarPorcentajeTask extends AsyncTask<Void, Void, String> {
         @Override
@@ -197,7 +196,8 @@ public class menuPrincipal extends Activity {
                     alimentar.setEnabled(true);
                     alimentarPeces();
                 }else if(porcentaje <= 10){
-                    alimentar.setEnabled(false);
+                    alimentar.setEnabled(true);
+                    alimentarPeces();
                     mostrarNotificacion("Alerta!!!", "No hay alimento suficiente");
                 }
             }

@@ -5,8 +5,8 @@
 #include <DallasTemperature.h>
 
 // WiFi CREDENTIALS
-const char *ssid = "Bibiana_2G";
-const char *password = "Bi7biana";
+const char *ssid = "DESKTOP-MIL4CL5 3836";
+const char *password = "1&u8409H";
 
 // Pins
 #define PIN_TRIG D3
@@ -38,17 +38,10 @@ void setup() {
   pinMode(PIN_ECHO, INPUT);
   server.on("/ultrasonico", HTTP_GET, mandarPorcentaje);
 
-  miServo.attach(PIN_SERVO); // Conectar el servo
-  miServo.write(90); // Initial servo position
+  miServo.attach(PIN_SERVO); 
+  miServo.write(80); 
   server.on("/alimentar", HTTP_GET, moverServo);
   
-  unsigned long currentMillis = millis();
-
-  // Leer temperatura cada 'tempInterval' milisegundos
-  if (currentMillis - lastTempMillis >= tempInterval) {
-    mandarTemp();
-    lastTempMillis = currentMillis;
-  }
   sensors.begin();
   server.on("/temperatura", HTTP_GET, mandarTemp);
 
@@ -80,7 +73,7 @@ void moverServo() {
     miServo.write(0); 
     server.send(200, "text/plain", "Alimentando..."); 
     delay(10000); 
-    miServo.write(90); 
+    miServo.write(80); 
     servoEnMovimiento = true;
     delay(1000);
     servoEnMovimiento = false;
@@ -100,7 +93,7 @@ void mandarPorcentaje() {
   distance = (duration / 2) / 29.1;
 
   // Calcular el porcentaje
-  float distanciaMaxima = 25.5;
+  float distanciaMaxima = 14.0;
   float distanciaMinima = 3.0;
   porcentaje = map(distance, distanciaMinima, distanciaMaxima, 100, 0);
   porcentaje = constrain(porcentaje, 0, 100);
