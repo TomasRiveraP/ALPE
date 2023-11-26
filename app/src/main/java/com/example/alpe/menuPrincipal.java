@@ -31,7 +31,7 @@ import java.util.Date;
 import java.util.Locale;
 public class menuPrincipal extends Activity {
     private DatabaseReference databaseReference;
-    public static final String ESP8266_IP = "192.168.137.91";
+    public static final String ESP8266_IP = "192.168.137.202";
     private ProgressBar porcentajeProgressBar;
     private TextView porcentajeTextView;
 
